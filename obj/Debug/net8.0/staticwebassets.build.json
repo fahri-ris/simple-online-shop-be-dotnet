@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "N075kfJ5OFm4GkA3OD8v0GKxKcbMV6Eb8plkNsVZOSw=",
+  "Source": "simple-online-shop-be-dotnet",
+  "BasePath": "_content/simple-online-shop-be-dotnet",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
