@@ -4,7 +4,7 @@ public class CustomerRequest
 {
     public required string CustomerName { get; set; }
     public string? CustomerAddress { get; set; }
-    public required string CustomerCode { get; set; }
     public string? CustomerPhone { get; set; }
+    public bool IsActive { get; set; }
     public string? Pic { get; set; }
 }

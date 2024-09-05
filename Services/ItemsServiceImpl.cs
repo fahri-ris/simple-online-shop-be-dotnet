@@ -3,15 +3,19 @@ using simple_online_shop_be_dotnet.Dtos.Items;
 using simple_online_shop_be_dotnet.Exceptions;
 using simple_online_shop_be_dotnet.Models;
 using simple_online_shop_be_dotnet.Repositories;
+using simple_online_shop_be_dotnet.Util;
 
 namespace simple_online_shop_be_dotnet.Services;
 
 public class ItemsServiceImpl : ItemsService
 {
     private readonly ItemsRepository _itemsRepository;
-    public ItemsServiceImpl(ItemsRepository itemsRepository)
+    private readonly CodeGenerator _codeGenerator;
+    
+    public ItemsServiceImpl(ItemsRepository itemsRepository, CodeGenerator codeGenerator)
     {
         _itemsRepository = itemsRepository;
+        _codeGenerator = codeGenerator;
     }
     
     public async Task<List<ItemsResponse>> GetListItems()
@@ -54,7 +58,7 @@ public class ItemsServiceImpl : ItemsService
         var item = new Items
         {
             ItemsName = itemRequest.ItemsName,
-            ItemsCode = itemRequest.ItemsCode,
+            ItemsCode = await _codeGenerator.GenerateItemCode(),
             Stock = itemRequest.Stock, 
             Price = itemRequest.Price,
             IsAvailable = true,
@@ -82,7 +86,6 @@ public class ItemsServiceImpl : ItemsService
             throw new NotFoundException("Item not found");
         
         item.ItemsName = itemRequest.ItemsName;
-        item.ItemsCode = itemRequest.ItemsCode;
         item.Stock = itemRequest.Stock;
         item.Price = itemRequest.Price;
         item.LastReStock = DateTime.Now;
@@ -108,8 +111,7 @@ public class ItemsServiceImpl : ItemsService
         if (item == null) 
             throw new NotFoundException("Item not found");
         
-        item.IsAvailable = false;
-        await _itemsRepository.UpdateItemAsync(item);
+        await _itemsRepository.DeleteItemAsync(item);
         await _itemsRepository.SaveChangesAsync();
         
         return new MessageResponse

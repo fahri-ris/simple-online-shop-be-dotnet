@@ -3,7 +3,6 @@
 public class ItemsRequest
 {
     public required string ItemsName { get; set; }
-    public required string ItemsCode { get; set; }
     public int Stock { get; set; }
     public double Price { get; set; }
 }

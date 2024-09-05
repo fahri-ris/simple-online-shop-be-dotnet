@@ -15,14 +15,14 @@ public class ItemsRepositoryImpl : ItemsRepository
     public async Task<List<Items>> GetListItemsAsync()
     {
         return await _context.Items
-            .Where(item => item.IsAvailable)
+            .OrderByDescending(i => i.LastReStock)
             .ToListAsync();
     }
 
     public async Task<Items> GetItemByIdAsync(int itemId)
     {
         return await _context.Items
-            .FirstOrDefaultAsync(i => i.ItemId == itemId && i.IsAvailable);
+            .FirstOrDefaultAsync(i => i.ItemId == itemId);
     }
 
     public async Task AddItemAsync(Items item)
@@ -38,5 +38,16 @@ public class ItemsRepositoryImpl : ItemsRepository
     public async Task SaveChangesAsync()
     {
         await _context.SaveChangesAsync();
+    }
+    
+    public async Task<int> ItemsCountAsync()
+    {
+        return await _context.Items
+            .CountAsync();
+    }
+    
+    public async Task DeleteItemAsync(Items item)
+    {
+        _context.Items.Remove(item);
     }
 }

@@ -9,4 +9,6 @@ public interface ItemsRepository
     Task AddItemAsync(Items item);
     Task UpdateItemAsync(Items item);
     Task SaveChangesAsync();
+    Task<int> ItemsCountAsync();
+    Task DeleteItemAsync(Items items);
 }

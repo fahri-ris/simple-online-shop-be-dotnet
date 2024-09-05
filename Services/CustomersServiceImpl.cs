@@ -3,16 +3,19 @@ using simple_online_shop_be_dotnet.Dtos.Customers;
 using simple_online_shop_be_dotnet.Exceptions;
 using simple_online_shop_be_dotnet.Models;
 using simple_online_shop_be_dotnet.Repositories;
+using simple_online_shop_be_dotnet.Util;
 
 namespace simple_online_shop_be_dotnet.Services;
 
 public class CustomersServiceImpl : CustomersService
 {
     private readonly CustomersRepository _customerRepository;
-
-    public CustomersServiceImpl(CustomersRepository customerRepository)
+    private readonly CodeGenerator _codeGenerator;
+    
+    public CustomersServiceImpl(CustomersRepository customerRepository, CodeGenerator codeGenerator)
     {
         _customerRepository = customerRepository;
+        _codeGenerator = codeGenerator;
     }
 
     public async Task<List<CustomersResponse>> GetListCustomer()
@@ -25,7 +28,8 @@ public class CustomersServiceImpl : CustomersService
             CustomerAddress = c.CustomerAddress,
             CustomerCode = c.CustomerCode,
             CustomerPhone = c.CustomerPhone,
-            LastOrderDate = c.LastOrderDate
+            LastOrderDate = c.LastOrderDate,
+            IsActive = c.IsActive
         }).ToList();
     }
 
@@ -56,10 +60,10 @@ public class CustomersServiceImpl : CustomersService
         {
             CustomerName = customerRequest.CustomerName,
             CustomerAddress = customerRequest.CustomerAddress,
-            CustomerCode = customerRequest.CustomerCode,
+            CustomerCode =  await _codeGenerator.GenerateCustomerCode(),
             CustomerPhone = customerRequest.CustomerPhone,
             LastOrderDate = DateTime.Now,
-            IsActive = true,
+            IsActive = customerRequest.IsActive,
             Pic = customerRequest.Pic
         };
 
@@ -87,9 +91,9 @@ public class CustomersServiceImpl : CustomersService
 
         customer.CustomerName = customerRequest.CustomerName;
         customer.CustomerAddress = customerRequest.CustomerAddress;
-        customer.CustomerCode = customerRequest.CustomerCode;
         customer.CustomerPhone = customerRequest.CustomerPhone;
         customer.LastOrderDate = DateTime.Now;
+        customer.IsActive = customerRequest.IsActive;
         customer.Pic = customerRequest.Pic;
 
         await _customerRepository.UpdateCustomerAsync(customer);
@@ -114,8 +118,7 @@ public class CustomersServiceImpl : CustomersService
         if (customer == null)
             throw new NotFoundException("Customer not found");
 
-        customer.IsActive = false;
-        await _customerRepository.UpdateCustomerAsync(customer);
+        await _customerRepository.DeleteCustomerAsync(customer);
         await _customerRepository.SaveChangesAsync();
         
         var message = new MessageResponse()

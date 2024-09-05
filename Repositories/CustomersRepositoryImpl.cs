@@ -17,14 +17,14 @@ public class CustomersRepositoryImpl : CustomersRepository
     public async Task<List<Customers>> GetActiveCustomersAsync()
     {
         return await _context.Customers
-            .Where(c => c.IsActive)
+            .OrderBy(c => c.CustomerName)
             .ToListAsync();
     }
 
     public async Task<Customers> GetCustomerByIdAsync(int customerId)
     {
         return await _context.Customers
-            .FirstOrDefaultAsync(c => c.CustomerId == customerId && c.IsActive);
+            .FirstOrDefaultAsync(c => c.CustomerId == customerId);
     }
 
     public async Task AddCustomerAsync(Customers customer)
@@ -40,5 +40,16 @@ public class CustomersRepositoryImpl : CustomersRepository
     public async Task SaveChangesAsync()
     {
         await _context.SaveChangesAsync();
+    }
+    
+    public async Task<int> CountCustomersAsync()
+    {
+        return await _context.Customers
+            .CountAsync();
+    }
+    
+    public async Task DeleteCustomerAsync(Customers customers)
+    {
+        _context.Customers.Remove(customers);
     }
 }

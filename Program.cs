@@ -18,8 +18,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.Scan(scan => scan
     .FromAssemblyOf<Program>()
-    .AddClasses(classes => classes.InNamespaces("simple_online_shop_be_dotnet.Services", "simple_online_shop_be_dotnet.Repositories"))
+    .AddClasses(classes => classes.InNamespaces("simple_online_shop_be_dotnet.Services", 
+        "simple_online_shop_be_dotnet.Repositories"))
     .AsImplementedInterfaces()
+    .WithScopedLifetime());
+
+// Util
+builder.Services.Scan(scan => scan
+    .FromAssemblyOf<Program>()
+    .AddClasses(classes => classes.InNamespaces("simple_online_shop_be_dotnet.Util"))
+    .AsSelf() // Register the class itself without an interface
     .WithScopedLifetime());
 
 var app = builder.Build();

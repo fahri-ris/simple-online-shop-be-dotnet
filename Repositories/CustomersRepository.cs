@@ -10,4 +10,6 @@ public interface CustomersRepository
     Task AddCustomerAsync(Customers customers);
     Task UpdateCustomerAsync(Customers customers);
     Task SaveChangesAsync();
+    Task<int> CountCustomersAsync();
+    Task DeleteCustomerAsync(Customers customers);
 }

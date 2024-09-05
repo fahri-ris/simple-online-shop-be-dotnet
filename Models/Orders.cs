@@ -22,9 +22,11 @@ public class Orders
     
     [Column("customer_id")]
     public int CustomerId { get; set; }
+    public Customers Customers { get; set; } = null!;
     
     [Column("items_id")]
     public int ItemsId { get; set; }
+    public Items Items { get; set; } = null!;
     
     [Column("quantity")]
     public int Quantity { get; set; }

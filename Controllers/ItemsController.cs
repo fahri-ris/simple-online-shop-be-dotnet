@@ -26,7 +26,7 @@ public class ItemsController : ControllerBase
     }
     
     [HttpGet("{itemId}")]
-    public async Task<ActionResult<ItemsResponse>> GetDetailItem(int itemId)
+    public async Task<ActionResult<ItemsDetailResponse>> GetDetailItem(int itemId)
     {
         try
         {
