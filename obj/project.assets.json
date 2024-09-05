@@ -292,6 +292,26 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "Microsoft.Extensions.DependencyModel/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Buffers": "4.5.1",
+          "System.Memory": "4.5.4",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
+          "System.Text.Encodings.Web": "6.0.0",
+          "System.Text.Json": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -566,6 +586,23 @@
           }
         }
       },
+      "Scrutor/4.2.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.DependencyModel": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Scrutor.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Scrutor.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.4.0": {
         "type": "package",
         "dependencies": {
@@ -745,6 +782,15 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.Memory/4.5.4": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
         }
       },
       "System.Reactive/6.0.1": {
@@ -1622,6 +1668,25 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.DependencyModel/6.0.0": {
+      "sha512": "TD5QHg98m3+QhgEV1YVoNMl5KtBw/4rjfxLHO0e/YV9bPUBDKntApP4xdrVtGgCeQZHVfC2EXIGsdpRNrr87Pg==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencymodel/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.DependencyModel.dll",
+        "lib/net461/Microsoft.Extensions.DependencyModel.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.xml",
+        "microsoft.extensions.dependencymodel.6.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencymodel.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "Microsoft.Extensions.Logging/8.0.0": {
       "sha512": "tvRkov9tAJ3xP51LCv3FJ2zINmv1P8Hi8lhhtcKGqM+ImiTCC84uOPEI4z8Cdq2C3o9e+Aa0Gw0rmrsJD77W+w==",
       "type": "package",
@@ -2030,6 +2095,29 @@
         "runtimes/win-x86/native/QuestPdfSkia.dll"
       ]
     },
+    "Scrutor/4.2.2": {
+      "sha512": "t5VIYA7WJXoJJo7s4DoHakMGwTu+MeEnZumMOhTCH7kz9xWha24G7dJNxWrHPlu0ZdZAS4jDZCxxAnyaBh7uYw==",
+      "type": "package",
+      "path": "scrutor/4.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/Scrutor.dll",
+        "lib/net461/Scrutor.pdb",
+        "lib/net461/Scrutor.xml",
+        "lib/net6.0/Scrutor.dll",
+        "lib/net6.0/Scrutor.pdb",
+        "lib/net6.0/Scrutor.xml",
+        "lib/netcoreapp3.1/Scrutor.dll",
+        "lib/netcoreapp3.1/Scrutor.pdb",
+        "lib/netcoreapp3.1/Scrutor.xml",
+        "lib/netstandard2.0/Scrutor.dll",
+        "lib/netstandard2.0/Scrutor.pdb",
+        "lib/netstandard2.0/Scrutor.xml",
+        "scrutor.4.2.2.nupkg.sha512",
+        "scrutor.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.4.0": {
       "sha512": "eUBr4TW0up6oKDA5Xwkul289uqSMgY0xGN4pnbOIBqCcN9VKGGaPvHX3vWaG/hvocfGDP+MGzMA0bBBKz2fkmQ==",
       "type": "package",
@@ -2374,6 +2462,29 @@
         "system.io.pipelines.6.0.3.nupkg.sha512",
         "system.io.pipelines.nuspec",
         "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Memory/4.5.4": {
+      "sha512": "1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
+      "type": "package",
+      "path": "system.memory/4.5.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Memory.dll",
+        "lib/net461/System.Memory.xml",
+        "lib/netcoreapp2.1/_._",
+        "lib/netstandard1.1/System.Memory.dll",
+        "lib/netstandard1.1/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "ref/netcoreapp2.1/_._",
+        "system.memory.4.5.4.nupkg.sha512",
+        "system.memory.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Reactive/6.0.1": {
@@ -3136,6 +3247,7 @@
       "MySqlConnector >= 2.3.7",
       "MySqlConnector.DependencyInjection >= 2.3.6",
       "QuestPDF >= 2024.7.3",
+      "Scrutor >= 4.2.2",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -3212,6 +3324,10 @@
           "QuestPDF": {
             "target": "Package",
             "version": "[2024.7.3, )"
+          },
+          "Scrutor": {
+            "target": "Package",
+            "version": "[4.2.2, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

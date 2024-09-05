@@ -1,26 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
-using simple_online_shop_be_dotnet.Models.Entities;
+using simple_online_shop_be_dotnet.Models;
 
 namespace simple_online_shop_be_dotnet.Data;
 
 public class ApplicationDbContext : DbContext
 {
-    private readonly IConfiguration _configuration;
-    
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration) : base(options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-        _configuration = configuration;
-    }
-    
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseMySQL(
-                _configuration.GetConnectionString("Default")!
-            );
-        }
     }
     
     public DbSet<Customers> Customers { get; set; }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("simple-online-shop-be-dotnet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cce3470f5adfc5a81211c2e038db47218c0f9940")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d22378fad5899cbb9401f5655c20bcbe249e18eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("simple-online-shop-be-dotnet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("simple-online-shop-be-dotnet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
