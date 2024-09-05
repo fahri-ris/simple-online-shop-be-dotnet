@@ -66,7 +66,7 @@ public class CustomersServiceImpl : CustomersService
         await _customerRepository.AddCustomerAsync(customer);
         await _customerRepository.SaveChangesAsync();
         
-        return new CustomersResponse()
+        return new CustomersResponse
         {
             CustomerId = customer.CustomerId,
             CustomerName = customer.CustomerName,

@@ -1,6 +1,13 @@
-﻿namespace simple_online_shop_be_dotnet.Services;
+﻿using simple_online_shop_be_dotnet.Dtos;
+using simple_online_shop_be_dotnet.Dtos.Items;
+
+namespace simple_online_shop_be_dotnet.Services;
 
 public interface ItemsService
 {
-    
+    Task<List<ItemsResponse>> GetListItems();
+    Task<ItemsDetailResponse> GetItemDetail(int itemId);
+    Task<ItemsResponse> AddItem(ItemsRequest itemRequest);
+    Task<ItemsResponse> UpdateItem(int itemId, ItemsRequest itemRequest);
+    Task<MessageResponse> DeleteItem(int itemId);
 }

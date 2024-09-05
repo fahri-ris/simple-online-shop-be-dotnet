@@ -87,6 +87,5 @@ C:\Users\LENOVO\RiderProjects\WebApplication\simple-online-shop-be-dotnet\bin\De
 C:\Users\LENOVO\RiderProjects\WebApplication\simple-online-shop-be-dotnet\bin\Debug\net8.0\runtimes\win-x64\native\QuestPdfSkia.dll
 C:\Users\LENOVO\RiderProjects\WebApplication\simple-online-shop-be-dotnet\bin\Debug\net8.0\runtimes\win-x86\native\QuestPdfSkia.dll
 C:\Users\LENOVO\RiderProjects\WebApplication\simple-online-shop-be-dotnet\obj\Debug\net8.0\simple-online-shop-be-dotnet.sourcelink.json
-C:\Users\LENOVO\RiderProjects\WebApplication\simple-online-shop-be-dotnet\bin\Debug\net8.0\Bogus.dll
 C:\Users\LENOVO\RiderProjects\WebApplication\simple-online-shop-be-dotnet\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\LENOVO\RiderProjects\WebApplication\simple-online-shop-be-dotnet\bin\Debug\net8.0\Scrutor.dll
