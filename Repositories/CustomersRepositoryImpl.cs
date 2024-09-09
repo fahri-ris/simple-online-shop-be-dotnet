@@ -14,7 +14,7 @@ public class CustomersRepositoryImpl : CustomersRepository
         _context = context;
     }
 
-    public async Task<List<Customers>> GetActiveCustomersAsync()
+    public async Task<List<Customers>> GetListCustomersAsync()
     {
         return await _context.Customers
             .OrderBy(c => c.CustomerName)

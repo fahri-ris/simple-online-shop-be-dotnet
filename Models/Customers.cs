@@ -31,4 +31,7 @@ public class Customers
     
     [Column("pic")]
     public string? Pic { get; set; }
+
+    [Column("is_deleted")]
+    public bool IsDeleted { get; set; }
 }

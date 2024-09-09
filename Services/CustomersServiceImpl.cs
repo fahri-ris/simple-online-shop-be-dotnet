@@ -20,7 +20,7 @@ public class CustomersServiceImpl : CustomersService
 
     public async Task<List<CustomersResponse>> GetListCustomer()
     {
-        var customers = await _customerRepository.GetActiveCustomersAsync();
+        var customers = await _customerRepository.GetListCustomersAsync();
         return customers.Select(c => new CustomersResponse()
         {
             CustomerId = c.CustomerId,

@@ -22,12 +22,19 @@ public class Orders
     
     [Column("customer_id")]
     public int CustomerId { get; set; }
+    
+    [ForeignKey("CustomerId")]
     public Customers Customers { get; set; } = null!;
     
     [Column("items_id")]
     public int ItemsId { get; set; }
+    
+    [ForeignKey("ItemsId")]
     public Items Items { get; set; } = null!;
     
     [Column("quantity")]
     public int Quantity { get; set; }
+    
+    [Column("is_deleted")]
+    public bool IsDeleted { get; set; }
 }

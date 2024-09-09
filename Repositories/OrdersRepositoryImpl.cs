@@ -17,6 +17,8 @@ public class OrdersRepositoryImpl : OrdersRepository
     public async Task<List<Orders>> GetListOrdersAsync()
     {
         return await _context.Orders
+            .Include(o => o.Customers)
+            .Include(o => o.Items)
             .OrderByDescending(o => o.OrderDate)
             .ToListAsync();
     }
@@ -24,6 +26,8 @@ public class OrdersRepositoryImpl : OrdersRepository
     public async Task<Orders> GetOrderByIdAsync(int orderId)
     {
         return await _context.Orders
+            .Include(o => o.Customers)
+            .Include(o => o.Items)
             .FirstOrDefaultAsync(o => o.OrderId == orderId);
     }
 

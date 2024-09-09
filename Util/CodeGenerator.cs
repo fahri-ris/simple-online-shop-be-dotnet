@@ -18,7 +18,7 @@ public class CodeGenerator
     public async Task<string> GenerateCustomerCode()
     {
         var prefix = "CUS-";
-        var defaultNumber = 00001;
+        var defaultNumber = "00001";
         var lastCode = await _customersRepository.CountCustomersAsync();
 
         string customerCode;
@@ -29,7 +29,7 @@ public class CodeGenerator
         else
         {
             lastCode++;
-            customerCode = prefix + lastCode;
+            customerCode = prefix + lastCode.ToString().PadLeft(5, '0');
         }
 
         return customerCode;
@@ -38,7 +38,7 @@ public class CodeGenerator
     public async Task<string> GenerateItemCode()
     {
         var prefix = "I-";
-        var defaultNumber = 00001;
+        var defaultNumber = "00001";
         var lastCode = await _itemsRepository.ItemsCountAsync();
 
         string itemCode;
@@ -49,7 +49,7 @@ public class CodeGenerator
         else
         {
             lastCode++;
-            itemCode = prefix + lastCode;
+            itemCode = prefix + lastCode.ToString().PadLeft(5, '0');
         }
 
         return itemCode;
@@ -58,7 +58,7 @@ public class CodeGenerator
     public async Task<string> GenerateOrderCode()
     {
         var prefix = "ORD-";
-        var defaultNumber = 00001;
+        var defaultNumber = "00001";
         var lastCode = await _ordersRepository.CountOrdersAsync();
 
         string orderCode;
@@ -69,7 +69,7 @@ public class CodeGenerator
         else
         {
             lastCode++;
-            orderCode = prefix + lastCode;
+            orderCode = prefix + lastCode.ToString().PadLeft(5, '0');
         }
 
         return orderCode;

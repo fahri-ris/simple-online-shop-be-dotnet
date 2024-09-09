@@ -27,7 +27,7 @@ public class OrderServiceImpl : OrderService
     {
         var orders = await _ordersRepository.GetListOrdersAsync();
         return orders.Select(
-            order => new OrdersResponse
+            order => new OrdersResponse()
             {
                 OrderId = order.OrderId,
                 OrderCode = order.OrderCode,
@@ -50,7 +50,9 @@ public class OrderServiceImpl : OrderService
         {
             OrderId = order.OrderId,
             OrderCode = order.OrderCode,
+            CustomerId = order.CustomerId,
             CustomerName = order.Customers.CustomerName,
+            ItemsId = order.ItemsId,
             ItemsName = order.Items.ItemsName,
             Quantity = order.Quantity,
             TotalPrice = order.TotalPrice,
@@ -153,6 +155,7 @@ public class OrderServiceImpl : OrderService
             OrderCode = existingOrder.OrderCode,
             CustomerName = existingOrder.Customers.CustomerName,
             ItemsName = existingOrder.Items.ItemsName,
+            TotalPrice = existingOrder.TotalPrice,
             Quantity = existingOrder.Quantity,
         };
     }

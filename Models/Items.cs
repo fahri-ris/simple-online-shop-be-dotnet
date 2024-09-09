@@ -28,4 +28,7 @@ public class Items
     
     [Column("last_re_stock")]
     public DateTime LastReStock { get; set; }
+    
+    [Column("is_deleted")]
+    public bool IsDeleted { get; set; }
 }

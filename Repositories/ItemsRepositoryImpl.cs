@@ -18,6 +18,13 @@ public class ItemsRepositoryImpl : ItemsRepository
             .OrderByDescending(i => i.LastReStock)
             .ToListAsync();
     }
+    
+    public async Task<List<Items>> GetListItemsOrderByNameAsc()
+    {
+        return await _context.Items
+            .OrderBy(i => i.ItemsName)
+            .ToListAsync();
+    }
 
     public async Task<Items> GetItemByIdAsync(int itemId)
     {
