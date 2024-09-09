@@ -78,4 +78,13 @@ public class OrdersRepositoryImpl : OrdersRepository
             .Include(o => o.Items)
             .FirstOrDefaultAsync(o => o.ItemsId == itemId);
     }
+
+    public async Task<List<Orders>> GetListOrderIn(List<int> orderIds)
+    {
+        return await _context.Orders
+            .Where(o => orderIds.Contains(o.OrderId))
+            .Include(o => o.Customers)
+            .Include(o => o.Items)
+            .ToListAsync();
+    }
 }

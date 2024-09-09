@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wAo66FUv1N4=",
+  "dgSpecHash": "Ll/qP1EWKbs=",
   "success": true,
   "projectFilePath": "C:\\Users\\LENOVO\\RiderProjects\\WebApplication\\simple-online-shop-be-dotnet\\simple-online-shop-be-dotnet.csproj",
   "expectedPackageFiles": [
@@ -35,7 +35,7 @@
     "C:\\Users\\LENOVO\\.nuget\\packages\\mysql.entityframeworkcore\\8.0.5\\mysql.entityframeworkcore.8.0.5.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\mysqlconnector\\2.3.7\\mysqlconnector.2.3.7.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\mysqlconnector.dependencyinjection\\2.3.6\\mysqlconnector.dependencyinjection.2.3.6.nupkg.sha512",
-    "C:\\Users\\LENOVO\\.nuget\\packages\\questpdf\\2024.7.3\\questpdf.2024.7.3.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\pdfsharp-migradoc\\6.1.1\\pdfsharp-migradoc.6.1.1.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\scrutor\\4.2.2\\scrutor.4.2.2.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",

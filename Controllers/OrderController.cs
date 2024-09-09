@@ -110,4 +110,25 @@ public class OrderController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
         }
     }
+    
+    [HttpPost("download-pdf")]
+    public async Task<ActionResult> DownloadPdf([FromBody] OrderDownloadPdfRequest orderDownloadPdfRequests)
+    {
+        try
+        {
+            var pdfDocument = await _orderService.DownloadPdf(orderDownloadPdfRequests);
+            Response.ContentType = "application/pdf";
+            
+            return File(pdfDocument, "application/pdf", "Order.pdf");
+        }
+        
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+    }
 }

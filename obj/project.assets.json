@@ -540,49 +540,84 @@
           }
         }
       },
-      "QuestPDF/2024.7.3": {
+      "PDFsharp-MigraDoc/6.1.1": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "6.0.0"
+        },
         "compile": {
-          "lib/net8.0/QuestPDF.dll": {
-            "related": ".xml"
+          "lib/net6.0/MigraDoc.DocumentObjectModel.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/MigraDoc.Rendering.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/MigraDoc.RtfRendering.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.Charting.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.Quality.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.Snippets.dll": {
+            "related": ".pdb"
+          },
+          "lib/net6.0/PdfSharp.System.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.WPFonts.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.dll": {
+            "related": ".Charting.pdb;.Charting.xml;.pdb;.Quality.pdb;.Quality.xml;.Snippets.pdb;.System.pdb;.System.xml;.WPFonts.pdb;.WPFonts.xml;.xml"
           }
         },
         "runtime": {
-          "lib/net8.0/QuestPDF.dll": {
-            "related": ".xml"
+          "lib/net6.0/MigraDoc.DocumentObjectModel.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/MigraDoc.Rendering.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/MigraDoc.RtfRendering.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.Charting.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.Quality.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.Snippets.dll": {
+            "related": ".pdb"
+          },
+          "lib/net6.0/PdfSharp.System.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.WPFonts.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/PdfSharp.dll": {
+            "related": ".Charting.pdb;.Charting.xml;.pdb;.Quality.pdb;.Quality.xml;.Snippets.pdb;.System.pdb;.System.xml;.WPFonts.pdb;.WPFonts.xml;.xml"
           }
         },
-        "build": {
-          "buildTransitive/QuestPDF.targets": {}
-        },
-        "runtimeTargets": {
-          "runtimes/linux-arm64/native/libQuestPdfSkia.so": {
-            "assetType": "native",
-            "rid": "linux-arm64"
+        "resource": {
+          "lib/net6.0/de/MigraDoc.DocumentObjectModel.resources.dll": {
+            "locale": "de"
           },
-          "runtimes/linux-musl-x64/native/libQuestPdfSkia.so": {
-            "assetType": "native",
-            "rid": "linux-musl-x64"
+          "lib/net6.0/de/MigraDoc.Rendering.resources.dll": {
+            "locale": "de"
           },
-          "runtimes/linux-x64/native/libQuestPdfSkia.so": {
-            "assetType": "native",
-            "rid": "linux-x64"
+          "lib/net6.0/de/MigraDoc.RtfRendering.resources.dll": {
+            "locale": "de"
           },
-          "runtimes/osx-arm64/native/libQuestPdfSkia.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
+          "lib/net6.0/de/PdfSharp.Charting.resources.dll": {
+            "locale": "de"
           },
-          "runtimes/osx-x64/native/libQuestPdfSkia.dylib": {
-            "assetType": "native",
-            "rid": "osx-x64"
-          },
-          "runtimes/win-x64/native/QuestPdfSkia.dll": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
-          "runtimes/win-x86/native/QuestPdfSkia.dll": {
-            "assetType": "native",
-            "rid": "win-x86"
+          "lib/net6.0/de/PdfSharp.resources.dll": {
+            "locale": "de"
           }
         }
       },
@@ -2029,70 +2064,79 @@
         "mysqlconnector.dependencyinjection.nuspec"
       ]
     },
-    "QuestPDF/2024.7.3": {
-      "sha512": "e3M+8ZsTAxhYAEBlELq4q9MFUDK8j/eZeZ9m7C4HT62IGL/VwqoEWjJmbZSJlXj+VNxUwktBI+bJtwqxZeYUJA==",
+    "PDFsharp-MigraDoc/6.1.1": {
+      "sha512": "x0TpoIBth4OLZ41NjrY1rEKZgqFBdMEJ7OLFjdNxd6dv8bhBxuIdolF+ywkY9qS1R9fhAT42zbRU+9yKniN9Gg==",
       "type": "package",
-      "path": "questpdf/2024.7.3",
+      "path": "pdfsharp-migradoc/6.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Contributors.md",
-        "Description.md",
-        "Documentation.xml",
-        "ExternalDependencyLicenses/emsdk.txt",
-        "ExternalDependencyLicenses/expat.txt",
-        "ExternalDependencyLicenses/harfbuzz.txt",
-        "ExternalDependencyLicenses/icu.txt",
-        "ExternalDependencyLicenses/libjpeg-turbo.txt",
-        "ExternalDependencyLicenses/libpng.txt",
-        "ExternalDependencyLicenses/libwebp.txt",
-        "ExternalDependencyLicenses/ninja-build.txt",
-        "ExternalDependencyLicenses/readme.txt",
-        "ExternalDependencyLicenses/skia.txt",
-        "ExternalDependencyLicenses/wuffs.txt",
-        "ExternalDependencyLicenses/zlib.txt",
-        "LatoFont/Lato-Black.ttf",
-        "LatoFont/Lato-BlackItalic.ttf",
-        "LatoFont/Lato-Bold.ttf",
-        "LatoFont/Lato-BoldItalic.ttf",
-        "LatoFont/Lato-ExtraBold.ttf",
-        "LatoFont/Lato-ExtraBoldItalic.ttf",
-        "LatoFont/Lato-ExtraLight.ttf",
-        "LatoFont/Lato-ExtraLightItalic.ttf",
-        "LatoFont/Lato-Italic.ttf",
-        "LatoFont/Lato-Light.ttf",
-        "LatoFont/Lato-LightItalic.ttf",
-        "LatoFont/Lato-Medium.ttf",
-        "LatoFont/Lato-MediumItalic.ttf",
-        "LatoFont/Lato-Regular.ttf",
-        "LatoFont/Lato-SemiBold.ttf",
-        "LatoFont/Lato-SemiBoldItalic.ttf",
-        "LatoFont/Lato-Thin.ttf",
-        "LatoFont/Lato-ThinItalic.ttf",
-        "LatoFont/OFL.txt",
-        "Logo.png",
-        "PackageLicense.md",
-        "PackageReadme.md",
-        "ReleaseNotes.txt",
-        "build/QuestPDF.targets",
-        "build/net4/QuestPDF.targets",
-        "buildTransitive/QuestPDF.targets",
-        "buildTransitive/net4/QuestPDF.targets",
-        "lib/net6.0/QuestPDF.dll",
-        "lib/net6.0/QuestPDF.xml",
-        "lib/net8.0/QuestPDF.dll",
-        "lib/net8.0/QuestPDF.xml",
-        "lib/netstandard2.0/QuestPDF.dll",
-        "lib/netstandard2.0/QuestPDF.xml",
-        "questpdf.2024.7.3.nupkg.sha512",
-        "questpdf.nuspec",
-        "runtimes/linux-arm64/native/libQuestPdfSkia.so",
-        "runtimes/linux-musl-x64/native/libQuestPdfSkia.so",
-        "runtimes/linux-x64/native/libQuestPdfSkia.so",
-        "runtimes/osx-arm64/native/libQuestPdfSkia.dylib",
-        "runtimes/osx-x64/native/libQuestPdfSkia.dylib",
-        "runtimes/win-x64/native/QuestPdfSkia.dll",
-        "runtimes/win-x86/native/QuestPdfSkia.dll"
+        "README.md",
+        "images/MigraDoc-128x128.png",
+        "lib/net6.0/MigraDoc.DocumentObjectModel.dll",
+        "lib/net6.0/MigraDoc.DocumentObjectModel.pdb",
+        "lib/net6.0/MigraDoc.DocumentObjectModel.xml",
+        "lib/net6.0/MigraDoc.Rendering.dll",
+        "lib/net6.0/MigraDoc.Rendering.pdb",
+        "lib/net6.0/MigraDoc.Rendering.xml",
+        "lib/net6.0/MigraDoc.RtfRendering.dll",
+        "lib/net6.0/MigraDoc.RtfRendering.pdb",
+        "lib/net6.0/MigraDoc.RtfRendering.xml",
+        "lib/net6.0/PdfSharp.Charting.dll",
+        "lib/net6.0/PdfSharp.Charting.pdb",
+        "lib/net6.0/PdfSharp.Charting.xml",
+        "lib/net6.0/PdfSharp.Quality.dll",
+        "lib/net6.0/PdfSharp.Quality.pdb",
+        "lib/net6.0/PdfSharp.Quality.xml",
+        "lib/net6.0/PdfSharp.Snippets.dll",
+        "lib/net6.0/PdfSharp.Snippets.pdb",
+        "lib/net6.0/PdfSharp.System.dll",
+        "lib/net6.0/PdfSharp.System.pdb",
+        "lib/net6.0/PdfSharp.System.xml",
+        "lib/net6.0/PdfSharp.WPFonts.dll",
+        "lib/net6.0/PdfSharp.WPFonts.pdb",
+        "lib/net6.0/PdfSharp.WPFonts.xml",
+        "lib/net6.0/PdfSharp.dll",
+        "lib/net6.0/PdfSharp.pdb",
+        "lib/net6.0/PdfSharp.xml",
+        "lib/net6.0/de/MigraDoc.DocumentObjectModel.resources.dll",
+        "lib/net6.0/de/MigraDoc.Rendering.resources.dll",
+        "lib/net6.0/de/MigraDoc.RtfRendering.resources.dll",
+        "lib/net6.0/de/PdfSharp.Charting.resources.dll",
+        "lib/net6.0/de/PdfSharp.resources.dll",
+        "lib/netstandard2.0/MigraDoc.DocumentObjectModel.dll",
+        "lib/netstandard2.0/MigraDoc.DocumentObjectModel.pdb",
+        "lib/netstandard2.0/MigraDoc.DocumentObjectModel.xml",
+        "lib/netstandard2.0/MigraDoc.Rendering.dll",
+        "lib/netstandard2.0/MigraDoc.Rendering.pdb",
+        "lib/netstandard2.0/MigraDoc.Rendering.xml",
+        "lib/netstandard2.0/MigraDoc.RtfRendering.dll",
+        "lib/netstandard2.0/MigraDoc.RtfRendering.pdb",
+        "lib/netstandard2.0/MigraDoc.RtfRendering.xml",
+        "lib/netstandard2.0/PdfSharp.Charting.dll",
+        "lib/netstandard2.0/PdfSharp.Charting.pdb",
+        "lib/netstandard2.0/PdfSharp.Charting.xml",
+        "lib/netstandard2.0/PdfSharp.Quality.dll",
+        "lib/netstandard2.0/PdfSharp.Quality.pdb",
+        "lib/netstandard2.0/PdfSharp.Quality.xml",
+        "lib/netstandard2.0/PdfSharp.Snippets.dll",
+        "lib/netstandard2.0/PdfSharp.Snippets.pdb",
+        "lib/netstandard2.0/PdfSharp.System.dll",
+        "lib/netstandard2.0/PdfSharp.System.pdb",
+        "lib/netstandard2.0/PdfSharp.System.xml",
+        "lib/netstandard2.0/PdfSharp.WPFonts.dll",
+        "lib/netstandard2.0/PdfSharp.WPFonts.pdb",
+        "lib/netstandard2.0/PdfSharp.WPFonts.xml",
+        "lib/netstandard2.0/PdfSharp.dll",
+        "lib/netstandard2.0/PdfSharp.pdb",
+        "lib/netstandard2.0/PdfSharp.xml",
+        "lib/netstandard2.0/de/MigraDoc.DocumentObjectModel.resources.dll",
+        "lib/netstandard2.0/de/MigraDoc.Rendering.resources.dll",
+        "lib/netstandard2.0/de/MigraDoc.RtfRendering.resources.dll",
+        "lib/netstandard2.0/de/PdfSharp.Charting.resources.dll",
+        "lib/netstandard2.0/de/PdfSharp.resources.dll",
+        "pdfsharp-migradoc.6.1.1.nupkg.sha512",
+        "pdfsharp-migradoc.nuspec"
       ]
     },
     "Scrutor/4.2.2": {
@@ -3242,11 +3286,12 @@
       "Microsoft.AspNetCore.OpenApi >= 8.0.8",
       "Microsoft.EntityFrameworkCore >= 8.0.8",
       "Microsoft.Extensions.Configuration >= 8.0.0",
+      "Microsoft.Extensions.DependencyInjection >= 8.0.0",
       "Minio >= 6.0.3",
       "MySql.EntityFrameworkCore >= 8.0.5",
       "MySqlConnector >= 2.3.7",
       "MySqlConnector.DependencyInjection >= 2.3.6",
-      "QuestPDF >= 2024.7.3",
+      "PDFsharp-MigraDoc >= 6.1.1",
       "Scrutor >= 4.2.2",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -3305,6 +3350,10 @@
             "target": "Package",
             "version": "[8.0.0, )"
           },
+          "Microsoft.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          },
           "Minio": {
             "target": "Package",
             "version": "[6.0.3, )"
@@ -3321,9 +3370,9 @@
             "target": "Package",
             "version": "[2.3.6, )"
           },
-          "QuestPDF": {
+          "PDFsharp-MigraDoc": {
             "target": "Package",
-            "version": "[2024.7.3, )"
+            "version": "[6.1.1, )"
           },
           "Scrutor": {
             "target": "Package",

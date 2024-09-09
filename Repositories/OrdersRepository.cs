@@ -14,4 +14,5 @@ public interface OrdersRepository
     Task<int> CountOrdersAsync();
     Task DeleteOrderAsync(Orders orders);
     Task<bool> CustomerExistAsync(int customerId);
+    Task<List<Orders>> GetListOrderIn(List<int> orderIds);
 }

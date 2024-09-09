@@ -1,4 +1,9 @@
-﻿using simple_online_shop_be_dotnet.Dtos;
+﻿using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Shapes;
+using MigraDoc.DocumentObjectModel.Tables;
+using MigraDoc.Rendering;
+using PdfSharp.Pdf;
+using simple_online_shop_be_dotnet.Dtos;
 using simple_online_shop_be_dotnet.Dtos.Orders;
 using simple_online_shop_be_dotnet.Exceptions;
 using simple_online_shop_be_dotnet.Models;
@@ -174,5 +179,106 @@ public class OrderServiceImpl : OrderService
         {
             Message = "Order deleted successfully"
         };
+    }
+
+    public async Task<byte[]> DownloadPdf(OrderDownloadPdfRequest orderDownloadPdfRequests)
+    {
+        // order list
+        var orders = await _ordersRepository.GetListOrderIn(orderDownloadPdfRequests.OrderId);
+        if (orders == null)
+            throw new NotFoundException("Data Not Found");
+        
+        var document = new Document();
+        
+        // create document template
+        BuildDocument(document, orders);
+        
+        // render
+        var rendererDocument = new PdfDocumentRenderer();
+        rendererDocument.Document = document;
+        
+        // render document to pdf
+        rendererDocument.RenderDocument();
+        PdfDocument pdfDocumentResponse = rendererDocument.PdfDocument;
+        
+        // download
+        MemoryStream stream = new MemoryStream();
+        pdfDocumentResponse.Save(stream);
+        
+        byte[] bytes = stream.ToArray();
+        stream.Close();
+
+        return bytes;
+    }
+
+    public void BuildDocument(Document document, List<Orders> orders)
+    {
+        Section section = document.AddSection();
+        Paragraph paragraph = section.AddParagraph();
+        paragraph.AddText("Order Report");
+        paragraph.Format.Font.Bold = true;
+        paragraph.Format.Font.Size = 20;
+        paragraph.Format.Alignment = ParagraphAlignment.Center;
+        
+        TextFrame addressFrame;
+        addressFrame = section.AddTextFrame();
+        // addressFrame.LineFormat.Width = 0.5; //Only for visual purposes
+        addressFrame.Height = "15.0cm";//any number
+        addressFrame.Width = "17.0cm";//sum of col widths
+        addressFrame.Left = ShapePosition.Center;
+        addressFrame.RelativeHorizontal = RelativeHorizontal.Margin;//irrelevant
+        addressFrame.Top = "4.0cm";//irrelevant
+        addressFrame.RelativeVertical = RelativeVertical.Page;//irrelevant
+        
+        // create item table
+        var table = addressFrame.AddTable();
+        table.Style = "Table";
+        table.Borders.Color = Colors.Black;
+        table.Borders.Width = 0.5;
+        table.Borders.Left.Width = 0.5;
+        table.Borders.Right.Width = 0.5;
+        table.Format.Alignment = ParagraphAlignment.Center;
+    
+        // header
+        Column column = table.AddColumn("1cm");
+        column.Format.Alignment = ParagraphAlignment.Center;
+        column = table.AddColumn("2cm");
+        column.Format.Alignment = ParagraphAlignment.Center;
+        column = table.AddColumn("4cm");
+        column.Format.Alignment = ParagraphAlignment.Center;
+        column = table.AddColumn("4cm");
+        column.Format.Alignment = ParagraphAlignment.Center;
+        column = table.AddColumn("2cm");
+        column.Format.Alignment = ParagraphAlignment.Center;
+        column = table.AddColumn("2cm");
+        column.Format.Alignment = ParagraphAlignment.Center;
+        column = table.AddColumn("2cm");
+        column.Format.Alignment = ParagraphAlignment.Center;
+        
+        Row row = table.AddRow();
+        row.HeadingFormat = true;
+        row.Format.Font.Bold = true;
+        row.Cells[0].AddParagraph("No");
+        row.Cells[1].AddParagraph("Order Code");
+        row.Cells[2].AddParagraph("Customer Name");
+        row.Cells[3].AddParagraph("Items Name");
+        row.Cells[4].AddParagraph("Quantity");
+        row.Cells[5].AddParagraph("Total Price");
+        row.Cells[6].AddParagraph("Order Date");
+
+        int no = 1;
+        foreach (var order in orders)
+        {
+            row = table.AddRow();
+            row.Cells[0].AddParagraph(no.ToString());
+            row.Cells[1].AddParagraph(order.OrderCode);
+            row.Cells[2].AddParagraph(order.Customers.CustomerName);
+            row.Cells[3].AddParagraph(order.Items.ItemsName);
+            row.Cells[4].AddParagraph(order.Quantity.ToString());
+            row.Cells[5].AddParagraph(order.TotalPrice.ToString());
+            row.Cells[6].AddParagraph(order.OrderDate.ToString());
+
+            no++;
+        }
     }
 }

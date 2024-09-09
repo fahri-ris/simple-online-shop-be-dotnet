@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Minio;
 using MySqlConnector;
 using simple_online_shop_be_dotnet.Data;
 using simple_online_shop_be_dotnet.Repositories;
@@ -8,6 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// minio
+var endpoint = "play.min.io";
+var accessKey = "minioadmin";
+var secretKey = "minioadmin";
+
+builder.Services.AddSingleton(new MinioClient()
+    .WithEndpoint(endpoint)
+    .WithCredentials(accessKey, secretKey)
+    .WithSSL()
+    .Build());
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -27,7 +39,7 @@ builder.Services.Scan(scan => scan
 builder.Services.Scan(scan => scan
     .FromAssemblyOf<Program>()
     .AddClasses(classes => classes.InNamespaces("simple_online_shop_be_dotnet.Util"))
-    .AsSelf() // Register the class itself without an interface
+    .AsSelf()
     .WithScopedLifetime());
 
 var app = builder.Build();
