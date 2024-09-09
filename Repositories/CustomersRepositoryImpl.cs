@@ -17,6 +17,7 @@ public class CustomersRepositoryImpl : CustomersRepository
     public async Task<List<Customers>> GetListCustomersAsync()
     {
         return await _context.Customers
+            .Where(c => c.IsDeleted == false)
             .OrderBy(c => c.CustomerName)
             .ToListAsync();
     }

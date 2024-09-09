@@ -11,11 +11,13 @@ public class CustomersServiceImpl : CustomersService
 {
     private readonly CustomersRepository _customerRepository;
     private readonly CodeGenerator _codeGenerator;
+    private readonly OrdersRepository _ordersRepository;
     
-    public CustomersServiceImpl(CustomersRepository customerRepository, CodeGenerator codeGenerator)
+    public CustomersServiceImpl(CustomersRepository customerRepository, CodeGenerator codeGenerator, OrdersRepository ordersRepository)
     {
         _customerRepository = customerRepository;
         _codeGenerator = codeGenerator;
+        _ordersRepository = ordersRepository;
     }
 
     public async Task<List<CustomersResponse>> GetListCustomer()
@@ -118,8 +120,18 @@ public class CustomersServiceImpl : CustomersService
         if (customer == null)
             throw new NotFoundException("Customer not found");
 
-        await _customerRepository.DeleteCustomerAsync(customer);
+        customer.IsDeleted = true;
+        await _customerRepository.UpdateCustomerAsync(customer);
+        
+        var order = await _ordersRepository.GetOrderByCustomerAsync(customerId);
+        if (order == null)
+            throw new NotFoundException("Customer not found");
+        order.IsDeleted = true;
+        await _ordersRepository.UpdateOrderAsync(order);
+        
+        // save all changes
         await _customerRepository.SaveChangesAsync();
+        await _ordersRepository.SaveChangesAsync();
         
         var message = new MessageResponse()
         {

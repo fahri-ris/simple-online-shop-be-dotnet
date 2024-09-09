@@ -15,6 +15,7 @@ public class ItemsRepositoryImpl : ItemsRepository
     public async Task<List<Items>> GetListItemsAsync()
     {
         return await _context.Items
+            .Where(i => i.IsDeleted == false)
             .OrderByDescending(i => i.LastReStock)
             .ToListAsync();
     }
@@ -22,6 +23,7 @@ public class ItemsRepositoryImpl : ItemsRepository
     public async Task<List<Items>> GetListItemsOrderByNameAsc()
     {
         return await _context.Items
+            .Where(i => i.IsDeleted == false)
             .OrderBy(i => i.ItemsName)
             .ToListAsync();
     }

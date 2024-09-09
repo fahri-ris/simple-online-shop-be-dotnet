@@ -11,11 +11,14 @@ public class ItemsServiceImpl : ItemsService
 {
     private readonly ItemsRepository _itemsRepository;
     private readonly CodeGenerator _codeGenerator;
+    private readonly OrdersRepository _ordersRepository;
     
-    public ItemsServiceImpl(ItemsRepository itemsRepository, CodeGenerator codeGenerator)
+    public ItemsServiceImpl(ItemsRepository itemsRepository, CodeGenerator codeGenerator,
+        OrdersRepository ordersRepository)
     {
         _itemsRepository = itemsRepository;
         _codeGenerator = codeGenerator;
+        _ordersRepository = ordersRepository;
     }
     
     public async Task<List<ItemsResponse>> GetListItems()
@@ -110,9 +113,19 @@ public class ItemsServiceImpl : ItemsService
         var item = await _itemsRepository.GetItemByIdAsync(itemId);
         if (item == null) 
             throw new NotFoundException("Item not found");
+
+        item.IsDeleted = true;
+        await _itemsRepository.UpdateItemAsync(item);
         
-        await _itemsRepository.DeleteItemAsync(item);
+        var order = await _ordersRepository.GetOrderByItemAsync(itemId);
+        if (order == null)
+            throw new NotFoundException("Order not found");
+        order.IsDeleted = true;
+        await _ordersRepository.UpdateOrderAsync(order);
+        
+        // save all changes
         await _itemsRepository.SaveChangesAsync();
+        await _ordersRepository.SaveChangesAsync();
         
         return new MessageResponse
         {

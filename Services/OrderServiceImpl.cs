@@ -165,8 +165,9 @@ public class OrderServiceImpl : OrderService
         var order = await _ordersRepository.GetOrderByIdAsync(orderId);
         if (order == null) 
             throw new NotFoundException("Order not found");
-        
-        await _ordersRepository.DeleteOrderAsync(order);
+
+        order.IsDeleted = true;
+        await _ordersRepository.UpdateOrderAsync(order);
         await _ordersRepository.SaveChangesAsync();
         
         return new MessageResponse

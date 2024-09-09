@@ -17,6 +17,7 @@ public class OrdersRepositoryImpl : OrdersRepository
     public async Task<List<Orders>> GetListOrdersAsync()
     {
         return await _context.Orders
+            .Where(o => o.IsDeleted == false)
             .Include(o => o.Customers)
             .Include(o => o.Items)
             .OrderByDescending(o => o.OrderDate)
@@ -60,5 +61,21 @@ public class OrdersRepositoryImpl : OrdersRepository
     {
         return await _context.Orders
             .AnyAsync(o => o.CustomerId == customerId);
+    }
+
+    public async Task<Orders> GetOrderByCustomerAsync(int customerId)
+    {
+        return await _context.Orders
+            .Include(o => o.Customers)
+            .Include(o => o.Items)
+            .FirstOrDefaultAsync(o => o.CustomerId == customerId);
+    }
+    
+    public async Task<Orders> GetOrderByItemAsync(int itemId)
+    {
+        return await _context.Orders
+            .Include(o => o.Customers)
+            .Include(o => o.Items)
+            .FirstOrDefaultAsync(o => o.ItemsId == itemId);
     }
 }

@@ -6,6 +6,8 @@ public interface OrdersRepository
 {
     Task<List<Orders>> GetListOrdersAsync();
     Task<Orders> GetOrderByIdAsync(int orderId);
+    Task<Orders> GetOrderByCustomerAsync(int customerId);
+    Task<Orders> GetOrderByItemAsync(int itemId);
     Task AddOrderAsync(Orders order);
     Task UpdateOrderAsync(Orders order);
     Task SaveChangesAsync();
