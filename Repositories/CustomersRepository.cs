@@ -1,4 +1,5 @@
-﻿using simple_online_shop_be_dotnet.Dtos.Customers;
+﻿using simple_online_shop_be_dotnet.Dtos;
+using simple_online_shop_be_dotnet.Dtos.Customers;
 using simple_online_shop_be_dotnet.Models;
 
 namespace simple_online_shop_be_dotnet.Repositories;
@@ -12,4 +13,5 @@ public interface CustomersRepository
     Task SaveChangesAsync();
     Task<int> CountCustomersAsync();
     Task DeleteCustomerAsync(Customers customers);
+    Task<List<Customers>> GetPageCustomers(int pageIndex, int pageSize);
 }

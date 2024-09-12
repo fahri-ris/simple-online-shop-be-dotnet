@@ -59,4 +59,16 @@ public class ItemsRepositoryImpl : ItemsRepository
     {
         _context.Items.Remove(item);
     }
+    
+    public async Task<List<Items>> GetPageItems(int pageIndex, int pageSize)
+    {
+        var items = await _context.Items
+            .Where(i => i.IsDeleted == false)
+            .OrderByDescending(i => i.LastReStock)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        return items;
+    }
 }

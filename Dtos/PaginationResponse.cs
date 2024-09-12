@@ -2,23 +2,16 @@
 
 public class PaginationResponse<T>
 {
-    public int CurrentPage { get; set; }
-    public int PageSize { get; set; }
-    public int TotalItems { get; set; }
-    public int TotalPages 
+    public List<T> Items { get; }
+    public int PageIndex { get; }
+    public int TotalPages { get; }
+    public bool HasPreviousPage => PageIndex > 1;
+    public bool HasNextPage => PageIndex < TotalPages;
+
+    public PaginationResponse(List<T> items, int pageIndex, int totalPages)
     {
-        get 
-        {
-            return (int)Math.Ceiling((double)TotalItems / PageSize);
-        }
-    }
-    public T Data { get; set; }
-    
-    public PaginationResponse(int currentPage, int pageSize, int totalItems, T data)
-    {
-        CurrentPage = currentPage;
-        PageSize = pageSize;
-        TotalItems = totalItems;
-        Data = data;
+        Items = items;
+        PageIndex = pageIndex;
+        TotalPages = totalPages;
     }
 }

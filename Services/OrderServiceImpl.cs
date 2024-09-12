@@ -45,6 +45,16 @@ public class OrderServiceImpl : OrderService
             ).ToList();
     }
 
+    public async Task<PaginationResponse<Orders>> GetPageOrders(int pageIndex, int pageSize)
+    {
+        var orders = await _ordersRepository.GetPageOrders(pageIndex, pageSize);
+        
+        var count = await _ordersRepository.CountOrdersAsync();
+        var totalPages = (int)Math.Ceiling(count / (double)pageSize);
+        
+        return new PaginationResponse<Orders>(orders, pageIndex, totalPages);
+    }
+
     public async Task<OrderDetailResponse> GetOrderDetail(int orderId)
     {
         var order = await _ordersRepository.GetOrderByIdAsync(orderId);

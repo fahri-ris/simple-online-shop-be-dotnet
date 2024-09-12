@@ -87,4 +87,18 @@ public class OrdersRepositoryImpl : OrdersRepository
             .Include(o => o.Items)
             .ToListAsync();
     }
+    
+    public async Task<List<Orders>> GetPageOrders(int pageIndex, int pageSize)
+    {
+        var orders = await _context.Orders
+            .Where(o => o.IsDeleted == false)
+            .Include(o => o.Customers)
+            .Include(o => o.Items)
+            .OrderByDescending(o => o.OrderDate)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        return orders;
+    }
 }

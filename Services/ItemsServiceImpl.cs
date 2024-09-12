@@ -1,4 +1,5 @@
-﻿using simple_online_shop_be_dotnet.Dtos;
+﻿using Org.BouncyCastle.Asn1.Utilities;
+using simple_online_shop_be_dotnet.Dtos;
 using simple_online_shop_be_dotnet.Dtos.Items;
 using simple_online_shop_be_dotnet.Exceptions;
 using simple_online_shop_be_dotnet.Models;
@@ -36,6 +37,16 @@ public class ItemsServiceImpl : ItemsService
                 LastReStock = item.LastReStock
             })
             .ToList();
+    }
+    
+    public async Task<PaginationResponse<Items>> GetPageItems(int pageIndex, int pageSize)
+    {
+        var items = await _itemsRepository.GetPageItems(pageIndex, pageSize);
+        
+        var count = await _itemsRepository.ItemsCountAsync();
+        var totalPages = (int)Math.Ceiling(count / (double)pageSize);
+        
+        return new PaginationResponse<Items>(items, pageIndex, totalPages);
     }
 
     public async Task<ItemsDetailResponse> GetItemDetail(int itemId)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using simple_online_shop_be_dotnet.Data;
+using simple_online_shop_be_dotnet.Dtos;
 using simple_online_shop_be_dotnet.Dtos.Customers;
 using simple_online_shop_be_dotnet.Models;
 
@@ -52,5 +53,17 @@ public class CustomersRepositoryImpl : CustomersRepository
     public async Task DeleteCustomerAsync(Customers customers)
     {
         _context.Customers.Remove(customers);
+    }
+
+    public async Task<List<Customers>> GetPageCustomers(int pageIndex, int pageSize)
+    {
+        var customers = await _context.Customers
+            .Where(c => c.IsDeleted == false)
+            .OrderBy(c => c.CustomerName)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        return customers;
     }
 }

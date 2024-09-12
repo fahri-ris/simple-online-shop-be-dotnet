@@ -4,6 +4,7 @@ using simple_online_shop_be_dotnet.Dtos.Customers;
 using simple_online_shop_be_dotnet.Dtos.Items;
 using simple_online_shop_be_dotnet.Dtos.Orders;
 using simple_online_shop_be_dotnet.Exceptions;
+using simple_online_shop_be_dotnet.Models;
 using simple_online_shop_be_dotnet.Services;
 
 namespace simple_online_shop_be_dotnet.Controllers;
@@ -24,6 +25,12 @@ public class OrderController : ControllerBase
     {
         var orders = await _orderService.GetListOrders();
         return Ok(orders);
+    }
+    
+    [HttpGet("pagination")]
+    public async Task<ActionResult<PaginationResponse<Orders>>> GetItemsPagination(int pageIndex = 1, int pageSize = 10)
+    {
+        return await _orderService.GetPageOrders(pageIndex, pageSize);
     }
     
     [HttpGet("{orderId}")]

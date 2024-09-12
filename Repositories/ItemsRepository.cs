@@ -12,4 +12,5 @@ public interface ItemsRepository
     Task SaveChangesAsync();
     Task<int> ItemsCountAsync();
     Task DeleteItemAsync(Items items);
+    Task<List<Items>> GetPageItems(int pageIndex, int pageSize);
 }

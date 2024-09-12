@@ -35,6 +35,16 @@ public class CustomersServiceImpl : CustomersService
         }).ToList();
     }
 
+    public async Task<PaginationResponse<Customers>> GetPageCustomers(int pageIndex, int pageSize)
+    {
+        var customers = await _customerRepository.GetPageCustomers(pageIndex, pageSize);
+        
+        var count = await _customerRepository.CountCustomersAsync();
+        var totalPages = (int)Math.Ceiling(count / (double)pageSize);
+        
+        return new PaginationResponse<Customers>(customers, pageIndex, totalPages);
+    }
+
     public async Task<CustomerDetailResponse> GetCustomerDetail(int customerId)
     {
         var customer = await _customerRepository.GetCustomerByIdAsync(customerId);
