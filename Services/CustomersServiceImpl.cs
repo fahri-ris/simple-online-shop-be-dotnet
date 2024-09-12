@@ -133,15 +133,8 @@ public class CustomersServiceImpl : CustomersService
         customer.IsDeleted = true;
         await _customerRepository.UpdateCustomerAsync(customer);
         
-        var order = await _ordersRepository.GetOrderByCustomerAsync(customerId);
-        if (order == null)
-            throw new NotFoundException("Customer not found");
-        order.IsDeleted = true;
-        await _ordersRepository.UpdateOrderAsync(order);
-        
         // save all changes
         await _customerRepository.SaveChangesAsync();
-        await _ordersRepository.SaveChangesAsync();
         
         var message = new MessageResponse()
         {

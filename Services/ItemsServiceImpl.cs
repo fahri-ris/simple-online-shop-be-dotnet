@@ -128,15 +128,8 @@ public class ItemsServiceImpl : ItemsService
         item.IsDeleted = true;
         await _itemsRepository.UpdateItemAsync(item);
         
-        var order = await _ordersRepository.GetOrderByItemAsync(itemId);
-        if (order == null)
-            throw new NotFoundException("Order not found");
-        order.IsDeleted = true;
-        await _ordersRepository.UpdateOrderAsync(order);
-        
         // save all changes
         await _itemsRepository.SaveChangesAsync();
-        await _ordersRepository.SaveChangesAsync();
         
         return new MessageResponse
         {
