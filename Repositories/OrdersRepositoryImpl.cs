@@ -52,6 +52,13 @@ public class OrdersRepositoryImpl : OrdersRepository
         return await _context.Orders.CountAsync();
     }
     
+    public async Task<int> CountOrdersBySearchAsync(string search)
+    {
+        return await _context.Orders
+            .Where(o => o.IsDeleted == false && o.Customers.CustomerName.ToLower().Contains(search.ToLower()))
+            .CountAsync();
+    }
+    
     public async Task DeleteOrderAsync(Orders orders)
     {
         _context.Orders.Remove(orders);
@@ -92,6 +99,20 @@ public class OrdersRepositoryImpl : OrdersRepository
     {
         var orders = await _context.Orders
             .Where(o => o.IsDeleted == false)
+            .Include(o => o.Customers)
+            .Include(o => o.Items)
+            .OrderByDescending(o => o.OrderDate)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        return orders;
+    }
+    
+    public async Task<List<Orders>> GetPageOrdersBySearch(int pageIndex, int pageSize, string search)
+    {
+        var orders = await _context.Orders
+            .Where(o => o.IsDeleted == false && o.Customers.CustomerName.ToLower().Contains(search.ToLower()))
             .Include(o => o.Customers)
             .Include(o => o.Items)
             .OrderByDescending(o => o.OrderDate)

@@ -35,11 +35,22 @@ public class CustomersServiceImpl : CustomersService
         }).ToList();
     }
 
-    public async Task<PaginationResponse<Customers>> GetPageCustomers(int pageIndex, int pageSize)
+    public async Task<PaginationResponse<Customers>> GetPageCustomers(int pageIndex, int pageSize, string search)
     {
-        var customers = await _customerRepository.GetPageCustomers(pageIndex, pageSize);
+        List<Customers> customers;
+        int count;
+        if (search != null)
+        {
+            customers = await _customerRepository.GetPageCustomersBySearch(pageIndex, pageSize, search);
+            count = await _customerRepository.CountCustomersBySearchAsync(search);
+        }
+        else
+        {
+            customers = await _customerRepository.GetPageCustomers(pageIndex, pageSize);
+            count = await _customerRepository.CountCustomersAsync();
+        }
         
-        var count = await _customerRepository.CountCustomersAsync();
+        
         var totalPages = (int)Math.Ceiling(count / (double)pageSize);
         
         return new PaginationResponse<Customers>(customers, pageIndex, totalPages);

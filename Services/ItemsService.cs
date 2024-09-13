@@ -11,5 +11,5 @@ public interface ItemsService
     Task<ItemsResponse> AddItem(ItemsRequest itemRequest);
     Task<ItemsResponse> UpdateItem(int itemId, ItemsRequest itemRequest);
     Task<MessageResponse> DeleteItem(int itemId);
-    Task<PaginationResponse<Items>> GetPageItems(int pageIndex, int pageSize);
+    Task<PaginationResponse<Items>> GetPageItems(int pageIndex, int pageSize, string search);
 }

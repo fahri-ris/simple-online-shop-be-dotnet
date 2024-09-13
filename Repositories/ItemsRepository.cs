@@ -11,6 +11,8 @@ public interface ItemsRepository
     Task UpdateItemAsync(Items item);
     Task SaveChangesAsync();
     Task<int> ItemsCountAsync();
+    Task<int> ItemsCountBySearchAsync(string search);
     Task DeleteItemAsync(Items items);
     Task<List<Items>> GetPageItems(int pageIndex, int pageSize);
+    Task<List<Items>> GetPageItemsBySearch(int pageIndex, int pageSize, string search);
 }

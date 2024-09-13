@@ -50,6 +50,13 @@ public class CustomersRepositoryImpl : CustomersRepository
             .CountAsync();
     }
     
+    public async Task<int> CountCustomersBySearchAsync(string search)
+    {
+        return await _context.Customers
+            .Where(c => c.IsDeleted == false && c.CustomerName.ToLower().Contains(search.ToLower())) 
+            .CountAsync();
+    }
+    
     public async Task DeleteCustomerAsync(Customers customers)
     {
         _context.Customers.Remove(customers);
@@ -59,6 +66,18 @@ public class CustomersRepositoryImpl : CustomersRepository
     {
         var customers = await _context.Customers
             .Where(c => c.IsDeleted == false)
+            .OrderBy(c => c.CustomerName)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        return customers;
+    }
+    
+    public async Task<List<Customers>> GetPageCustomersBySearch(int pageIndex, int pageSize, string search)
+    {
+        var customers = await _context.Customers
+            .Where(c => c.CustomerName.ToLower().Contains(search.ToLower()) && c.IsDeleted == false)
             .OrderBy(c => c.CustomerName)
             .Skip((pageIndex - 1) * pageSize)
             .Take(pageSize)

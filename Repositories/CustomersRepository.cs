@@ -12,6 +12,8 @@ public interface CustomersRepository
     Task UpdateCustomerAsync(Customers customers);
     Task SaveChangesAsync();
     Task<int> CountCustomersAsync();
+    Task<int> CountCustomersBySearchAsync(string search);
     Task DeleteCustomerAsync(Customers customers);
     Task<List<Customers>> GetPageCustomers(int pageIndex, int pageSize);
+    Task<List<Customers>> GetPageCustomersBySearch(int pageIndex, int pageSize, string search);
 }

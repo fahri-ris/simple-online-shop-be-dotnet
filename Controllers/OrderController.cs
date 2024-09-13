@@ -28,9 +28,9 @@ public class OrderController : ControllerBase
     }
     
     [HttpGet("pagination")]
-    public async Task<ActionResult<PaginationResponse<Orders>>> GetItemsPagination(int pageIndex = 1, int pageSize = 10)
+    public async Task<ActionResult<PaginationResponse<Orders>>> GetItemsPagination(int pageIndex = 1, int pageSize = 10, string search = null)
     {
-        return await _orderService.GetPageOrders(pageIndex, pageSize);
+        return await _orderService.GetPageOrders(pageIndex, pageSize, search);
     }
     
     [HttpGet("{orderId}")]

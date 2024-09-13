@@ -11,5 +11,5 @@ public interface CustomersService
     Task<CustomersResponse> AddCustomer(CustomerRequest customerRequest);
     Task<CustomersResponse> UpdateCustomer(int customerId, CustomerRequest customerRequest);
     Task<MessageResponse> DeleteCustomer(int customerId);
-    Task<PaginationResponse<Customers>> GetPageCustomers(int pageIndex, int pageSize);
+    Task<PaginationResponse<Customers>> GetPageCustomers(int pageIndex, int pageSize, string search);
 }

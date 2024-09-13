@@ -55,6 +55,13 @@ public class ItemsRepositoryImpl : ItemsRepository
             .CountAsync();
     }
     
+    public async Task<int> ItemsCountBySearchAsync(string search)
+    {
+        return await _context.Items
+            .Where(i => i.IsDeleted == false && i.ItemsName.ToLower().Contains(search.ToLower()))
+            .CountAsync();
+    }
+    
     public async Task DeleteItemAsync(Items item)
     {
         _context.Items.Remove(item);
@@ -64,6 +71,18 @@ public class ItemsRepositoryImpl : ItemsRepository
     {
         var items = await _context.Items
             .Where(i => i.IsDeleted == false)
+            .OrderByDescending(i => i.LastReStock)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        return items;
+    }
+    
+    public async Task<List<Items>> GetPageItemsBySearch(int pageIndex, int pageSize, string search)
+    {
+        var items = await _context.Items
+            .Where(i => i.IsDeleted == false && i.ItemsName.ToLower().Contains(search.ToLower()))
             .OrderByDescending(i => i.LastReStock)
             .Skip((pageIndex - 1) * pageSize)
             .Take(pageSize)

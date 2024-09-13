@@ -39,12 +39,22 @@ public class ItemsServiceImpl : ItemsService
             .ToList();
     }
     
-    public async Task<PaginationResponse<Items>> GetPageItems(int pageIndex, int pageSize)
+    public async Task<PaginationResponse<Items>> GetPageItems(int pageIndex, int pageSize, string search)
     {
-        var items = await _itemsRepository.GetPageItems(pageIndex, pageSize);
+        List<Items> items;
+        int count;
+        if (search != null)
+        {
+            items = await _itemsRepository.GetPageItemsBySearch(pageIndex, pageSize, search); 
+            count = await _itemsRepository.ItemsCountBySearchAsync(search);
+        }
+        else
+        {
+            items = await _itemsRepository.GetPageItems(pageIndex, pageSize);
+            count = await _itemsRepository.ItemsCountAsync();
+        }
         
-        var count = await _itemsRepository.ItemsCountAsync();
-        var totalPages = (int)Math.Ceiling(count / (double)pageSize);
+        var totalPages = (int)Math.Ceiling(count / (double) pageSize);
         
         return new PaginationResponse<Items>(items, pageIndex, totalPages);
     }

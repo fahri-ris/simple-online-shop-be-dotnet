@@ -27,9 +27,9 @@ public class ItemsController : ControllerBase
     }
     
     [HttpGet("pagination")]
-    public async Task<ActionResult<PaginationResponse<Items>>> GetItemsPagination(int pageIndex = 1, int pageSize = 10)
+    public async Task<ActionResult<PaginationResponse<Items>>> GetItemsPagination(int pageIndex = 1, int pageSize = 10, string search = null)
     {
-        return await _itemsService.GetPageItems(pageIndex, pageSize);
+        return await _itemsService.GetPageItems(pageIndex, pageSize, search);
     }
     
     [HttpGet("{itemId}")]

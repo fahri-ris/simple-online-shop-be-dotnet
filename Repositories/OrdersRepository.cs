@@ -12,8 +12,10 @@ public interface OrdersRepository
     Task UpdateOrderAsync(Orders order);
     Task SaveChangesAsync();
     Task<int> CountOrdersAsync();
+    Task<int> CountOrdersBySearchAsync(string search);
     Task DeleteOrderAsync(Orders orders);
     Task<bool> CustomerExistAsync(int customerId);
     Task<List<Orders>> GetListOrderIn(List<int> orderIds);
     Task<List<Orders>> GetPageOrders(int pageIndex, int pageSize);
+    Task<List<Orders>> GetPageOrdersBySearch(int pageIndex, int pageSize, string search);
 }

@@ -29,9 +29,9 @@ public class CustomersController : ControllerBase
     }
     
     [HttpGet("pagination")]
-    public async Task<ActionResult<PaginationResponse<Customers>>> GetCustomerPagination(int pageIndex = 1, int pageSize = 10)
+    public async Task<ActionResult<PaginationResponse<Customers>>> GetCustomerPagination(int pageIndex = 1, int pageSize = 10, string search = null)
     {
-        return await _customersService.GetPageCustomers(pageIndex, pageSize);
+        return await _customersService.GetPageCustomers(pageIndex, pageSize, search);
     }
     
     [HttpGet("{customerId}")]
