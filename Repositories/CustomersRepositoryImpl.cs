@@ -47,6 +47,7 @@ public class CustomersRepositoryImpl : CustomersRepository
     public async Task<int> CountCustomersAsync()
     {
         return await _context.Customers
+            .Where(c => c.IsDeleted == false)
             .CountAsync();
     }
     

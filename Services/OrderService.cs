@@ -13,5 +13,5 @@ public interface OrderService
     Task<OrdersResponse> UpdateOrder(int orderId, OrderRequest orderRequest);
     Task<MessageResponse> DeleteOrder(int orderId);
     Task<byte[]> DownloadPdf(OrderDownloadPdfRequest orderDownloadPdfRequests);
-    Task<PaginationResponse<Orders>> GetPageOrders(int pageIndex, int pageSize, string search);
+    Task<PaginationResponse<OrdersResponse>> GetPageOrders(int pageIndex, int pageSize, string search);
 }

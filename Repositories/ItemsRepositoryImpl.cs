@@ -52,6 +52,7 @@ public class ItemsRepositoryImpl : ItemsRepository
     public async Task<int> ItemsCountAsync()
     {
         return await _context.Items
+            .Where(i => i.IsDeleted == false)
             .CountAsync();
     }
     

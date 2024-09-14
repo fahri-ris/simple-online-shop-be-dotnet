@@ -45,7 +45,7 @@ public class OrderServiceImpl : OrderService
             ).ToList();
     }
 
-    public async Task<PaginationResponse<Orders>> GetPageOrders(int pageIndex, int pageSize, string search)
+    public async Task<PaginationResponse<OrdersResponse>> GetPageOrders(int pageIndex, int pageSize, string search)
     {
         List<Orders> orders;
         int count;
@@ -59,11 +59,22 @@ public class OrderServiceImpl : OrderService
             orders = await _ordersRepository.GetPageOrders(pageIndex, pageSize);
             count = await _ordersRepository.CountOrdersAsync();
         }
-        
+        List<OrdersResponse> orderResponse= orders
+            .Select(order => new OrdersResponse
+            {
+                OrderId = order.OrderId,
+                OrderCode = order.OrderCode,
+                CustomerName = order.Customers.CustomerName,
+                ItemsName = order.Items.ItemsName,
+                Quantity = order.Quantity,
+                TotalPrice = order.TotalPrice,
+                OrderDate = order.OrderDate
+            })
+            .ToList();
         
         var totalPages = (int)Math.Ceiling(count / (double)pageSize);
         
-        return new PaginationResponse<Orders>(orders, pageIndex, totalPages);
+        return new PaginationResponse<OrdersResponse>(orderResponse, pageIndex, totalPages);
     }
 
     public async Task<OrderDetailResponse> GetOrderDetail(int orderId)

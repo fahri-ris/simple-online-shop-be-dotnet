@@ -49,7 +49,9 @@ public class OrdersRepositoryImpl : OrdersRepository
 
     public async Task<int> CountOrdersAsync()
     {
-        return await _context.Orders.CountAsync();
+        return await _context.Orders
+            .Where(o => o.IsDeleted == false)
+            .CountAsync();
     }
     
     public async Task<int> CountOrdersBySearchAsync(string search)
